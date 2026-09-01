@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - mysql_metabase_data:/var/lib/mysql
+      - mysql_metabase_data_novo:/var/lib/mysql
     networks:
       - metabase-network
 
@@ -22,7 +22,7 @@ services:
     depends_on:
       - mysql-metabase
     ports:
-      - "3036:3000"
+      - "3037:3000"
     environment:
       JAVA_TIMEZONE: America/Sao_Paulo
       MB_DB_TYPE: mysql
@@ -35,9 +35,7 @@ services:
       - metabase-network
 
 volumes:
-  mysql_metabase_data:
-    external: true
-    name: metabase-projetos_mysql_metabase_data
+  mysql_metabase_data_novo:
 
 networks:
   metabase-network:
