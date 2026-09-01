@@ -1,17 +1,16 @@
 version: "3.8"
 
 services:
-  mysql-metabase:
-    image: mysql:8.4
-    container_name: mysql-metabase
+  postgres-metabase:
+    image: postgres:16
+    container_name: postgres-metabase
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - mysql_metabase_data_novo:/var/lib/mysql
+      - postgres_metabase_data:/var/lib/postgresql/data
     networks:
       - metabase-network
 
@@ -20,22 +19,22 @@ services:
     container_name: metabase-projetos
     restart: unless-stopped
     depends_on:
-      - mysql-metabase
+      - postgres-metabase
     ports:
       - "3037:3000"
     environment:
       JAVA_TIMEZONE: America/Sao_Paulo
-      MB_DB_TYPE: mysql
-      MB_DB_DBNAME: ${MYSQL_DATABASE}
-      MB_DB_PORT: 3306
-      MB_DB_USER: ${MYSQL_USER}
-      MB_DB_PASS: ${MYSQL_PASSWORD}
-      MB_DB_HOST: mysql-metabase
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: ${POSTGRES_DB}
+      MB_DB_PORT: 5432
+      MB_DB_USER: ${POSTGRES_USER}
+      MB_DB_PASS: ${POSTGRES_PASSWORD}
+      MB_DB_HOST: postgres-metabase
     networks:
       - metabase-network
 
 volumes:
-  mysql_metabase_data_novo:
+  postgres_metabase_data:
 
 networks:
   metabase-network:
