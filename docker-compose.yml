@@ -36,6 +36,8 @@ services:
 
 volumes:
   mysql_metabase_data:
+    external: true
+    name: metabase-projetos_mysql_metabase_data
 
 networks:
   metabase-network:
