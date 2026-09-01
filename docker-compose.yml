@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+
   postgres-metabase:
     image: postgres:16
     container_name: postgres-metabase
@@ -32,6 +33,12 @@ services:
       MB_DB_HOST: postgres-metabase
     networks:
       - metabase-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
 
 volumes:
   postgres_metabase_data:
