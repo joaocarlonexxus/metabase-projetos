@@ -1,0 +1,22 @@
+# Variáveis de ambiente
+.env
+.env.*
+
+# Backups
+backups/*.sql
+backups/*.sql.gz
+backups/*.gz
+backups/*.zip
+
+# Arquivos temporários
+*.log
+*.tmp
+*.temp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
