@@ -12,15 +12,17 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - mysql_metabase_data:/var/lib/mysql
+    networks:
+      - metabase-network
 
   metabase:
     image: metabase/metabase:v0.56.12
-    container_name: metabase
+    container_name: metabase-github
     restart: unless-stopped
     depends_on:
       - mysql-metabase
     ports:
-      - "3035:3000"
+      - "3036:3000"
     environment:
       JAVA_TIMEZONE: America/Sao_Paulo
       MB_DB_TYPE: mysql
@@ -29,6 +31,12 @@ services:
       MB_DB_USER: ${MYSQL_USER}
       MB_DB_PASS: ${MYSQL_PASSWORD}
       MB_DB_HOST: mysql-metabase
+    networks:
+      - metabase-network
 
 volumes:
   mysql_metabase_data:
+
+networks:
+  metabase-network:
+    driver: bridge
