@@ -17,7 +17,7 @@ services:
 
   metabase:
     image: metabase/metabase:v0.56.12
-    container_name: metabase-github
+    container_name: metabase-projetos
     restart: unless-stopped
     depends_on:
       - mysql-metabase
