@@ -16,7 +16,7 @@ services:
       - metabase-network
 
   metabase:
-    image: metabase/metabase:v0.56.12
+    image: metabase/metabase:v0.63.15
     container_name: metabase-projetos
     restart: unless-stopped
     depends_on:
