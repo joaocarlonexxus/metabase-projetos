@@ -1,5 +1,6 @@
 SELECT
-     CASE
+    COUNT(DISTINCT proj.task_gid) AS [Total de Projetos],
+    CASE
         WHEN proj.status_projeto = 'Não Iniciado' THEN 'Não Iniciado'
         WHEN proj.status_projeto = 'Em Desenvolvimento' THEN 'Em Desenv.'
         WHEN proj.status_projeto = 'Desenvolvimento Pausado' THEN 'Desenv. Pausado'
@@ -7,8 +8,7 @@ SELECT
         WHEN proj.status_projeto = 'Em Implantação' THEN 'Em Implant.'
         WHEN proj.status_projeto = 'Fornecimento Materiais' THEN 'Fornec. Materiais'
         WHEN proj.status_projeto = 'Em Fechamento' THEN 'Em Fechamento'
-    END AS [Status do Projeto],
-    COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
+    END AS [Status do Projeto]
 FROM dbo.vw_projetos_tratada AS proj
 	LEFT JOIN dbo.d_colaboradores AS colab
     	ON proj.colaborador = colab.colaborador
