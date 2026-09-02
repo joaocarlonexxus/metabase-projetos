@@ -11,8 +11,8 @@ WHERE
         OR proj.tempo_estimado_implant_geral = 0
     )
     AND proj.tempo_real_implant_geral > 0
-    --[[AND proj.data_abertura_proposta >= {{data_inicial}}]]
-    --[[AND proj.data_abertura_proposta <= {{data_final}}]]
-    --[[AND {{setor}}]]
-    --[[AND {{porte_projeto}}]]
-    --[[AND {{colaborador}}]];
+    [[AND proj.data_abertura_proposta >= {{data_inicial}}]]
+    [[AND proj.data_abertura_proposta <= {{data_final}}]]
+    [[AND {{setor}}]]
+    [[AND {{porte_projeto}}]]
+    [[AND {{colaborador}}]];
