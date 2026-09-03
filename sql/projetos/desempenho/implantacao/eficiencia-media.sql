@@ -1,0 +1,69 @@
+WITH Projetos AS
+(
+    SELECT
+        proj.task_gid,
+        MAX(
+            CASE
+                WHEN proj.setor IN ('Automação', 'Automação Ágil') THEN proj.tempo_real_implant_automacao
+                WHEN proj.setor = 'Elétrica' THEN proj.tempo_real_implant_eletrica
+                WHEN proj.setor = 'Sistemas' THEN proj.tempo_real_implant_sistemas
+                ELSE proj.tempo_real_implant_geral
+            END
+        ) AS tempo_real,
+        MAX(
+            CASE
+                WHEN proj.setor IN ('Automação', 'Automação Ágil') THEN proj.tempo_estimado_implant_automacao
+                WHEN proj.setor = 'Elétrica' THEN proj.tempo_estimado_implant_eletrica
+                WHEN proj.setor = 'Sistemas' THEN proj.tempo_estimado_implant_sistemas
+                ELSE proj.tempo_estimado_implant_geral
+            END
+        ) AS tempo_estimado
+    FROM dbo.vw_projetos_tratada AS proj
+        LEFT JOIN dbo.d_colaboradores AS colab
+            ON proj.colaborador = colab.colaborador
+        LEFT JOIN dbo.d_porte_projeto AS porte
+            ON proj.porte_projeto = porte.porte_projeto
+    WHERE
+        proj.status_projeto = 'Finalizado'
+        AND
+		(
+			CASE
+				WHEN proj.setor IN ('Automação', 'Automação Ágil')
+					THEN
+						CASE
+							WHEN proj.tempo_real_implant_automacao > 0 AND proj.tempo_estimado_implant_automacao > 0
+								THEN 1 ELSE 0
+						END
+				WHEN proj.setor = 'Elétrica'
+					THEN
+						CASE
+							WHEN proj.tempo_real_implant_eletrica > 0 AND proj.tempo_estimado_implant_eletrica > 0
+							THEN 1 ELSE 0
+						END
+				WHEN proj.setor = 'Sistemas'
+					THEN
+						CASE
+							WHEN proj.tempo_real_implant_sistemas > 0 AND proj.tempo_estimado_implant_sistemas > 0
+							THEN 1 ELSE 0
+						END
+				ELSE
+					CASE
+						WHEN proj.tempo_real_implant_geral > 0 AND proj.tempo_estimado_implant_geral > 0
+						THEN 1 ELSE 0
+					END
+			END = 1
+		)
+        [[AND proj.data_abertura_proposta >= {{data_inicial}}]]
+        [[AND proj.data_abertura_proposta <= {{data_final}}]]
+        [[AND {{setor}}]]
+        [[AND {{porte_projeto}}]]
+        [[AND {{colaborador}}]]
+    GROUP BY
+        proj.task_gid
+)
+SELECT
+    COALESCE(
+        SUM(tempo_real) / NULLIF(SUM(tempo_estimado), 0),
+        0
+    ) AS [Eficiência Média - Implant.]
+FROM Projetos;
