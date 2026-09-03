@@ -4,10 +4,10 @@ WITH Projetos AS
         proj.task_gid,
         MAX(proj.cmc) AS cmc
     FROM dbo.vw_projetos_tratada AS proj
-    LEFT JOIN dbo.d_colaboradores AS colab
-        ON proj.colaborador = colab.colaborador
-    LEFT JOIN dbo.d_porte_projeto AS porte
-        ON proj.porte_projeto = porte.porte_projeto
+        LEFT JOIN dbo.d_colaboradores AS colab
+            ON proj.colaborador = colab.colaborador
+        LEFT JOIN dbo.d_porte_projeto AS porte
+            ON proj.porte_projeto = porte.porte_projeto
     WHERE
         proj.status_projeto = 'Finalizado'
         AND proj.cmc > 0

@@ -5,10 +5,10 @@ WITH Projetos AS
         MAX(proj.tempo_real_desenv_geral) AS tempo_real_desenv_geral,
         MAX(proj.horas_retrabalho) AS horas_retrabalho
     FROM dbo.vw_projetos_tratada AS proj
-    LEFT JOIN dbo.d_colaboradores AS colab
-        ON proj.colaborador = colab.colaborador
-    LEFT JOIN dbo.d_porte_projeto AS porte
-        ON proj.porte_projeto = porte.porte_projeto
+        LEFT JOIN dbo.d_colaboradores AS colab
+            ON proj.colaborador = colab.colaborador
+        LEFT JOIN dbo.d_porte_projeto AS porte
+            ON proj.porte_projeto = porte.porte_projeto
     WHERE
         proj.status_projeto = 'Finalizado'
         [[AND proj.data_abertura_proposta >= {{data_inicial}}]]

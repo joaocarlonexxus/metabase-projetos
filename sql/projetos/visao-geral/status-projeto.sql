@@ -36,10 +36,8 @@ WHERE
     [[AND {{setor}}]]
     [[AND {{porte_projeto}}]]
     [[AND {{colaborador}}]]
-
 GROUP BY
     proj.status_projeto
-
 ORDER BY
     CASE
         WHEN proj.status_projeto = 'Não Iniciado' THEN 1

@@ -1,12 +1,12 @@
 SELECT
     COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
 FROM dbo.vw_projetos_tratada AS proj
-LEFT JOIN dbo.d_colaboradores AS colab
-    ON proj.colaborador = colab.colaborador
-LEFT JOIN dbo.d_porte_projeto AS porte
-    ON proj.porte_projeto = porte.porte_projeto
-LEFT JOIN dbo.d_prioridades AS priori
-    ON proj.prioridade = priori.prioridade_simples
+    LEFT JOIN dbo.d_colaboradores AS colab
+        ON proj.colaborador = colab.colaborador
+    LEFT JOIN dbo.d_porte_projeto AS porte
+        ON proj.porte_projeto = porte.porte_projeto
+    LEFT JOIN dbo.d_prioridades AS priori
+        ON proj.prioridade = priori.prioridade_simples
 WHERE
     priori.prioridade_simples = 'Crítica'
     AND proj.status_projeto IN (
