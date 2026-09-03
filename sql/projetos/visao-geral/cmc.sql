@@ -19,7 +19,9 @@ WITH Projetos AS
     GROUP BY
         proj.task_gid
 )
-
 SELECT
-    SUM(cmc) / NULLIF(COUNT(*), 0) AS [CMC]
+    COALESCE(
+        SUM(cmc) / NULLIF(COUNT(cmc), 0),
+        0
+    ) AS [CMC]
 FROM Projetos;

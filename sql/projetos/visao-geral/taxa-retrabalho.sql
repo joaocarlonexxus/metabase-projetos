@@ -2,6 +2,7 @@ WITH Projetos AS
 (
     SELECT
         proj.task_gid,
+        MAX(proj.tempo_real_desenv_geral) AS tempo_real_desenv_geral,
         MAX(proj.horas_retrabalho) AS horas_retrabalho
     FROM dbo.vw_projetos_tratada AS proj
     LEFT JOIN dbo.d_colaboradores AS colab
@@ -19,5 +20,8 @@ WITH Projetos AS
         proj.task_gid
 )
 SELECT
-    SUM(horas_retrabalho) / NULLIF(COUNT(*), 0) AS [Taxa de Retrabalho]
+    COALESCE(
+        SUM(horas_retrabalho) / NULLIF(SUM(tempo_real_desenv_geral) + SUM(horas_retrabalho), 0),
+        0
+    ) AS [Taxa de Retrabalho]
 FROM Projetos;
