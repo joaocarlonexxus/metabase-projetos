@@ -1,13 +1,10 @@
 # Metabase
-
 Projeto responsável pela infraestrutura e documentação do Metabase.
 
 ## Arquitetura
-
 A solução é composta por:
-
 - Metabase para criação e visualização dos dashboards;
-- MySQL dedicado ao armazenamento dos dados internos do Metabase;
+- PostreSQL dedicado ao armazenamento dos dados internos do Metabase;
 - SQL Server externo utilizado como fonte de dados dos dashboards;
 - Docker para execução dos serviços;
 - Portainer para gerenciamento e implantação da stack;
@@ -27,3 +24,4 @@ metabase/
     ├── projetos/
     ├── indicadores/
     └── dashboards/
+```
