@@ -73,7 +73,7 @@ WITH Projetos AS
 )
 SELECT
     COALESCE(
-        SUM(tempo_real) / NULLIF(SUM(tempo_estimado), 0),
+        SUM(tempo_real) - SUM(tempo_estimado),
         0
-    ) AS [Eficiência Média - Desenv.]
+    ) AS [Desvio Total - Desenv.]
 FROM Projetos;

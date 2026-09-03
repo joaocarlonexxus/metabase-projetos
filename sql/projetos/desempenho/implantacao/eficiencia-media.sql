@@ -4,17 +4,25 @@ WITH Projetos AS
         proj.task_gid,
         MAX(
             CASE
-                WHEN proj.setor IN ('Automação', 'Automação Ágil') THEN proj.tempo_real_implant_automacao
-                WHEN proj.setor = 'Elétrica' THEN proj.tempo_real_implant_eletrica
-                WHEN proj.setor = 'Sistemas' THEN proj.tempo_real_implant_sistemas
+                WHEN 1 = 0 THEN NULL
+                [[WHEN {{setor}} AND proj.setor IN ('Automação', 'Automação Ágil')
+                    THEN proj.tempo_real_implant_automacao]]
+                [[WHEN {{setor}} AND proj.setor = 'Elétrica'
+                    THEN proj.tempo_real_implant_eletrica]]
+                [[WHEN {{setor}} AND proj.setor = 'Sistemas'
+                    THEN proj.tempo_real_implant_sistemas]]
                 ELSE proj.tempo_real_implant_geral
             END
         ) AS tempo_real,
         MAX(
             CASE
-                WHEN proj.setor IN ('Automação', 'Automação Ágil') THEN proj.tempo_estimado_implant_automacao
-                WHEN proj.setor = 'Elétrica' THEN proj.tempo_estimado_implant_eletrica
-                WHEN proj.setor = 'Sistemas' THEN proj.tempo_estimado_implant_sistemas
+                WHEN 1 = 0 THEN NULL
+                [[WHEN {{setor}} AND proj.setor IN ('Automação', 'Automação Ágil')
+                    THEN proj.tempo_estimado_implant_automacao]]
+                [[WHEN {{setor}} AND proj.setor = 'Elétrica'
+                    THEN proj.tempo_estimado_implant_eletrica]]
+                [[WHEN {{setor}} AND proj.setor = 'Sistemas'
+                    THEN proj.tempo_estimado_implant_sistemas]]
                 ELSE proj.tempo_estimado_implant_geral
             END
         ) AS tempo_estimado
@@ -26,33 +34,35 @@ WITH Projetos AS
     WHERE
         proj.status_projeto = 'Finalizado'
         AND
-		(
-			CASE
-				WHEN proj.setor IN ('Automação', 'Automação Ágil')
-					THEN
-						CASE
-							WHEN proj.tempo_real_implant_automacao > 0 AND proj.tempo_estimado_implant_automacao > 0
-								THEN 1 ELSE 0
-						END
-				WHEN proj.setor = 'Elétrica'
-					THEN
-						CASE
-							WHEN proj.tempo_real_implant_eletrica > 0 AND proj.tempo_estimado_implant_eletrica > 0
-							THEN 1 ELSE 0
-						END
-				WHEN proj.setor = 'Sistemas'
-					THEN
-						CASE
-							WHEN proj.tempo_real_implant_sistemas > 0 AND proj.tempo_estimado_implant_sistemas > 0
-							THEN 1 ELSE 0
-						END
-				ELSE
-					CASE
-						WHEN proj.tempo_real_implant_geral > 0 AND proj.tempo_estimado_implant_geral > 0
-						THEN 1 ELSE 0
-					END
-			END = 1
-		)
+        (
+            CASE
+                WHEN 1 = 0 THEN 0
+                [[WHEN {{setor}} AND proj.setor IN ('Automação', 'Automação Ágil')
+                    THEN
+                        CASE
+                            WHEN proj.tempo_real_implant_automacao > 0 AND proj.tempo_estimado_implant_automacao > 0
+                            THEN 1 ELSE 0
+                        END]]
+                [[WHEN {{setor}} AND proj.setor = 'Elétrica'
+                    THEN
+                        CASE
+                            WHEN proj.tempo_real_implant_eletrica > 0 AND proj.tempo_estimado_implant_eletrica > 0
+                            THEN 1 ELSE 0
+                        END]]
+                [[WHEN {{setor}} AND proj.setor = 'Sistemas'
+                    THEN
+                        CASE
+                            WHEN proj.tempo_real_implant_sistemas > 0 AND proj.tempo_estimado_implant_sistemas > 0
+                            THEN 1 ELSE 0
+                        END]]
+                ELSE
+                    CASE
+                        WHEN proj.tempo_real_implant_geral > 0
+                         AND proj.tempo_estimado_implant_geral > 0
+                        THEN 1 ELSE 0
+                    END
+            END = 1
+        )
         [[AND proj.data_abertura_proposta >= {{data_inicial}}]]
         [[AND proj.data_abertura_proposta <= {{data_final}}]]
         [[AND {{setor}}]]
