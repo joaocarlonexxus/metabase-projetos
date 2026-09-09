@@ -73,7 +73,16 @@ WITH Projetos AS
 )
 SELECT
     COALESCE(
-        SUM(tempo_real) / NULLIF(SUM(tempo_estimado), 0),
+        SUM(tempo_estimado) / NULLIF(SUM(tempo_real), 0),
         0
     ) AS [Eficiência Média - Desenv.]
 FROM Projetos;
+
+/*
+ * Observação:
+ * O WHEN 1 = 0 THEN NULL serve apenas para evitar erro na consulta
+ * quando nenhum setor é selecionado.
+ *
+ * Sem um setor selecionado, a consulta utiliza os tempos gerais do projeto.
+ * Quando um setor é selecionado, utiliza os tempos específicos daquele setor.
+ */

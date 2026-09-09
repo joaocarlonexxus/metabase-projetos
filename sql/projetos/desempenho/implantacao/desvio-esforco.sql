@@ -73,9 +73,9 @@ WITH Projetos AS
 )
 SELECT
     COALESCE(
-        SUM(tempo_estimado) / NULLIF(SUM(tempo_real), 0),
+        SUM(tempo_real) / NULLIF(SUM(tempo_estimado), 0),
         0
-    ) AS [Eficiência Média - Implant.]
+    ) AS [Desvio de Esforço - Implant.]
 FROM Projetos;
 
 /*
