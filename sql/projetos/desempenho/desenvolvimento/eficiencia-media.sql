@@ -63,8 +63,8 @@ WITH Projetos AS
                     END
             END = 1
         )
-        [[AND proj.data_abertura_proposta >= {{data_inicial}}]]
-        [[AND proj.data_abertura_proposta <= {{data_final}}]]
+        [[AND proj.data_termino >= {{data_inicial}}]]
+        [[AND proj.data_termino <= {{data_final}}]]
         [[AND {{setor}}]]
         [[AND {{porte_projeto}}]]
         [[AND {{colaborador}}]]
