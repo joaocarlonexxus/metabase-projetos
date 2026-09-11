@@ -10,7 +10,17 @@ WITH Projetos AS
 	WHERE proj.status_projeto = 'Finalizado'
 		[[AND proj.data_termino >= {{data_inicial}}]]
 		[[AND proj.data_termino <= {{data_final}}]]
-		[[AND {{setor}}]]
+		[[
+		AND EXISTS
+		(
+			SELECT 1
+			FROM dbo.b_projetos_setores AS bp_setor
+			INNER JOIN dbo.d_setores AS st
+				ON bp_setor.setor_id = st.setor_id
+			WHERE bp_setor.task_gid = proj.task_gid
+				AND {{setor}}
+		)
+		]]
 		[[AND {{porte_projeto}}]]
 		[[
 		AND EXISTS
