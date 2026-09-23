@@ -10,8 +10,8 @@ SELECT
 		WHEN proj.status_projeto = 'Em Fechamento' THEN 'Em Fechamento'
 	END AS [Status do Projeto]
 FROM dbo.vw_projetos_tratada AS proj
-LEFT JOIN dbo.d_porte_projeto AS porte
-	ON proj.porte_projeto = porte.porte_projeto
+	LEFT JOIN dbo.d_porte_projeto AS porte
+		ON proj.porte_projeto = porte.porte_projeto
 WHERE proj.status_projeto IN (
 		'Não Iniciado',
 		'Em Desenvolvimento',

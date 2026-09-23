@@ -1,8 +1,8 @@
 SELECT
 	COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
 FROM dbo.vw_projetos_tratada AS proj
-LEFT JOIN dbo.d_porte_projeto AS porte
-	ON proj.porte_projeto = porte.porte_projeto
+	LEFT JOIN dbo.d_porte_projeto AS porte
+		ON proj.porte_projeto = porte.porte_projeto
 WHERE proj.status_projeto = 'Finalizado'
 	[[AND proj.data_termino >= {{data_inicial}}]]
 	[[AND proj.data_termino <= {{data_final}}]]
@@ -40,3 +40,7 @@ WHERE proj.status_projeto = 'Finalizado'
 			AND {{tipo_proposta}}
 	)
 	]];
+
+/*
+O filtro de tipo de proposta foi adicionado neste indicador para que o Eduard extraía o valor para inserir na Reunião de acompanhamento Lista de Prioridades.
+*/
