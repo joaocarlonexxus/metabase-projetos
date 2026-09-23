@@ -1,8 +1,8 @@
 SELECT
 	COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
 FROM dbo.vw_projetos_tratada AS proj
-LEFT JOIN dbo.d_porte_projeto AS porte
-	ON proj.porte_projeto = porte.porte_projeto
+	LEFT JOIN dbo.d_porte_projeto AS porte
+		ON proj.porte_projeto = porte.porte_projeto
 WHERE (
 		proj.tempo_estimado_desenv_geral IS NULL
 		OR proj.tempo_estimado_desenv_geral = 0
