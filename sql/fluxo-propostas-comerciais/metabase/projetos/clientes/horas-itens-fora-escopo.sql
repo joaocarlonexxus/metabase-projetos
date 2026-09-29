@@ -30,5 +30,5 @@ WITH Projetos AS
 		proj.task_gid
 )
 SELECT
-	COALESCE(SUM(horas_itens_fora_escopo), 0) AS [Horas de Itens Fora do Escopo]
+	COALESCE(SUM(horas_itens_fora_escopo), 0) AS [Horas de Itens Fora de Escopo]
 FROM Projetos;

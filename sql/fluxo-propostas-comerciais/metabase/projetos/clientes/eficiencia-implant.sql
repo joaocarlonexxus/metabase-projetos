@@ -33,5 +33,5 @@ SELECT
 	COALESCE(
 		SUM(tempo_estimado) / NULLIF(SUM(tempo_real), 0),
 		0
-	) AS [Estimado x Real - Implant.]
+	) AS [Eficiência - Implant.]
 FROM Projetos;
