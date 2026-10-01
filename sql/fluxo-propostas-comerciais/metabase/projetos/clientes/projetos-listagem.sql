@@ -4,8 +4,8 @@ SELECT
 	proj.task_name AS [Proposta],
 	proj.setor AS [Setor],
 	proj.colaborador AS [Colaborador],
-	porte.porte_projeto_simples AS [Porte Projeto],
-	priori.prioridade_simples AS [Prioridade],
+	porte.porte_projeto AS [Porte Projeto],
+	ue.urgencia_entrega AS [Urgência de Entrega],
 	proj.tipo_proposta AS [Tipo Proposta],
 	proj.status_projeto AS [Status Projeto],
 	proj.status_prazo AS [Status Prazo],
@@ -35,8 +35,8 @@ SELECT
 FROM dbo.f_projetos_tratada AS proj
 	LEFT JOIN dbo.d_porte_projeto AS porte
 		ON proj.porte_projeto = porte.porte_projeto
-	LEFT JOIN dbo.d_prioridades AS priori
-		ON proj.prioridade = priori.prioridade
+	LEFT JOIN dbo.d_urgencias_entrega AS ue
+		ON proj.urgencia_entrega = ue.urgencia_entrega
 	LEFT JOIN dbo.d_clientes AS cli
 		ON proj.cliente = cli.cliente
 WHERE
