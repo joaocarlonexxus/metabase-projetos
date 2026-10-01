@@ -1,12 +1,12 @@
 SELECT
-	priori.prioridade_simples AS [Prioridade],
+	ue.urgencia_entrega AS [Urgência de Entrega],
 	COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
 FROM dbo.vw_projetos_tratada AS proj
 	LEFT JOIN dbo.d_porte_projeto AS porte
 		ON proj.porte_projeto = porte.porte_projeto
-	LEFT JOIN dbo.d_prioridades AS priori
-		ON proj.prioridade = priori.prioridade
-WHERE priori.prioridade_simples IS NOT NULL
+	LEFT JOIN dbo.d_urgencias_entrega AS ue
+		ON proj.urgencia_entrega = ue.urgencia_entrega
+WHERE ue.urgencia_entrega IS NOT NULL
 	AND proj.status_projeto IN (
 		'Não Iniciado',
 		'Em Desenvolvimento',
@@ -49,12 +49,12 @@ WHERE priori.prioridade_simples IS NOT NULL
 	)
 	]]
 GROUP BY
-	priori.prioridade_simples
+	ue.urgencia_entrega
 ORDER BY
 	CASE
-		WHEN priori.prioridade_simples = 'Crítica' THEN 1
-		WHEN priori.prioridade_simples = 'Alta' THEN 2
-		WHEN priori.prioridade_simples = 'Média' THEN 3
-		WHEN priori.prioridade_simples = 'Baixa' THEN 4
-		WHEN priori.prioridade_simples = 'Secundário' THEN 5
+		WHEN ue.urgencia_entrega = 'Crítica' THEN 1
+		WHEN ue.urgencia_entrega = 'Alta' THEN 2
+		WHEN ue.urgencia_entrega = 'Média' THEN 3
+		WHEN ue.urgencia_entrega = 'Baixa' THEN 4
+		WHEN ue.urgencia_entrega = 'Secundário' THEN 5
 	END;

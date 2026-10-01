@@ -3,9 +3,9 @@ SELECT
 FROM dbo.vw_projetos_tratada AS proj
 	LEFT JOIN dbo.d_porte_projeto AS porte
 		ON proj.porte_projeto = porte.porte_projeto
-	LEFT JOIN dbo.d_prioridades AS priori
-		ON proj.prioridade = priori.prioridade
-WHERE priori.prioridade_simples = 'Crítica'
+	LEFT JOIN dbo.d_urgencias_entrega AS ue
+		ON proj.urgencia_entrega = ue.urgencia_entrega
+WHERE ue.urgencia_entrega = 'Crítica'
 	AND proj.status_projeto IN (
 		'Não Iniciado',
 		'Em Desenvolvimento',
