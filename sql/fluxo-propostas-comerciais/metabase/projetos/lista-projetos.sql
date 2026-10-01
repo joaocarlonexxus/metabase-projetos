@@ -73,6 +73,6 @@ WHERE 1 = 1
 			AND {{colaborador}}
 	)
 	]]
-	[[AND {{prioridade}}]]
+	[[AND {{urgencia_entrega}}]]
 ORDER BY
 	[Cliente];

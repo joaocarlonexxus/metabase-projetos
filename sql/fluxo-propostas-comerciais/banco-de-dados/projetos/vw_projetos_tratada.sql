@@ -1,12 +1,13 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  View [dbo].[vw_projetos_tratada]    Data do Script: 24/09/2026 14:28:32 ******/
+/****** Objeto:  View [dbo].[vw_projetos_tratada]    Data do Script: 01/10/2026 11:12:28 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -33,7 +34,7 @@ SELECT
     p.proposta,
     p.tipo_contrato,
     s.setor AS setor,
-    p.prioridade,
+    p.urgencia_entrega,
     p.porte_projeto,
     p.tipo_proposta,
     p.etapa_proposta,
@@ -96,5 +97,3 @@ LEFT JOIN dbo.b_projetos_setores AS b
 LEFT JOIN dbo.d_setores AS s
     ON b.setor_id = s.setor_id;
 GO
-
-

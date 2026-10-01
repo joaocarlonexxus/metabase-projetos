@@ -1,15 +1,12 @@
 USE [controle_projetos_new]
 GO
-
-/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_f_projetos_tratada]    Data do Script: 24/09/2026 14:30:36 ******/
+/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_f_projetos_tratada]    Data do Script: 01/10/2026 11:08:47 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-CREATE PROCEDURE [dbo].[sp_atualizar_f_projetos_tratada]
+ALTER PROCEDURE [dbo].[sp_atualizar_f_projetos_tratada]
     @execucao_n8n_id NVARCHAR(100) = NULL
 AS
 BEGIN
@@ -69,7 +66,7 @@ BEGIN
                 r.proposta,
                 r.tipo_contrato,
                 r.setor,
-                r.prioridade,
+                r.urgencia_entrega,
                 r.porte_projeto,
                 r.tipo_proposta,
                 r.etapa_proposta,
@@ -232,7 +229,7 @@ BEGIN
                 destino.proposta = fonte.proposta,
                 destino.tipo_contrato = fonte.tipo_contrato,
                 destino.setor = fonte.setor,
-                destino.prioridade = fonte.prioridade,
+                destino.urgencia_entrega = fonte.urgencia_entrega,
                 destino.porte_projeto = fonte.porte_projeto,
                 destino.tipo_proposta = fonte.tipo_proposta,
                 destino.etapa_proposta = fonte.etapa_proposta,
@@ -323,7 +320,7 @@ BEGIN
                 proposta,
                 tipo_contrato,
                 setor,
-                prioridade,
+                urgencia_entrega,
                 porte_projeto,
                 tipo_proposta,
                 etapa_proposta,
@@ -412,7 +409,7 @@ BEGIN
                 fonte.proposta,
                 fonte.tipo_contrato,
                 fonte.setor,
-                fonte.prioridade,
+                fonte.urgencia_entrega,
                 fonte.porte_projeto,
                 fonte.tipo_proposta,
                 fonte.etapa_proposta,
@@ -502,6 +499,3 @@ BEGIN
 
     END CATCH;
 END;
-GO
-
-

@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[d_porte_projeto]    Data do Script: 24/09/2026 14:26:46 ******/
+/****** Objeto:  Table [dbo].[d_porte_projeto]    Data do Script: 01/10/2026 11:04:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +11,6 @@ GO
 CREATE TABLE [dbo].[d_porte_projeto](
 	[porte_id] [int] NOT NULL,
 	[porte_projeto] [nvarchar](150) NOT NULL,
-	[porte_projeto_simples] [nvarchar](50) NOT NULL,
 	[ordem] [int] NOT NULL,
 	[ativo] [bit] NOT NULL,
 	[data_criacao] [datetime2](3) NOT NULL,
@@ -27,10 +26,6 @@ CREATE TABLE [dbo].[d_porte_projeto](
  CONSTRAINT [UQ_d_porte_projeto_porte_projeto] UNIQUE NONCLUSTERED 
 (
 	[porte_projeto] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
- CONSTRAINT [UQ_d_porte_projeto_porte_simples] UNIQUE NONCLUSTERED 
-(
-	[porte_projeto_simples] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -43,5 +38,3 @@ GO
 
 ALTER TABLE [dbo].[d_porte_projeto] ADD  CONSTRAINT [DF_d_porte_projeto_data_atualizacao]  DEFAULT (sysutcdatetime()) FOR [data_atualizacao]
 GO
-
-

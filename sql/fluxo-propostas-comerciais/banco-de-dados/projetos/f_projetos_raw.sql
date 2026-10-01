@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[f_projetos_raw]    Data do Script: 24/09/2026 14:14:21 ******/
+/****** Objeto:  Table [dbo].[f_projetos_raw]    Data do Script: 01/10/2026 11:11:33 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -27,7 +27,7 @@ CREATE TABLE [dbo].[f_projetos_raw](
 	[proposta] [nvarchar](500) NULL,
 	[tipo_contrato] [nvarchar](255) NULL,
 	[setor] [nvarchar](max) NULL,
-	[prioridade] [nvarchar](255) NULL,
+	[urgencia_entrega] [nvarchar](255) NULL,
 	[porte_projeto] [nvarchar](255) NULL,
 	[tipo_proposta] [nvarchar](max) NULL,
 	[etapa_proposta] [nvarchar](255) NULL,
@@ -94,5 +94,3 @@ GO
 
 ALTER TABLE [dbo].[f_projetos_raw] CHECK CONSTRAINT [CK_f_projetos_raw_payload_json]
 GO
-
-
