@@ -2,8 +2,14 @@ WITH Projetos AS
 (
     SELECT
         proj.task_gid,
+		MAX(cli.cliente_simples) AS [Cliente],
         MAX(proj.task_name) AS [Proposta],
-
+		MAX(proj.tempo_estimado_desenv_geral) AS [Desenv. - Planejado],
+		MAX(proj.tempo_real_desenv_geral) AS [Desenv. - Executado],
+		MAX(proj.tempo_estimado_implant_geral) AS [Implant. - Planejado],
+		MAX(proj.tempo_real_implant_geral) AS [Implant. - Executado],
+	    MAX(proj.horas_retrabalho) AS [Horas de Retrabalho],
+		MAX(proj.horas_itens_fora_escopo) AS [Horas de Itens Fora do Escopo],
         -- desvio
         MAX(
             CASE
@@ -12,11 +18,13 @@ WITH Projetos AS
                         (proj.tempo_real_implant_geral - proj.tempo_estimado_implant_geral) + (proj.tempo_real_desenv_geral - proj.tempo_estimado_desenv_geral)
                     ) IS NULL
                 THEN 'Sem Estimativa'
+
                 WHEN
                     ABS(
                         (proj.tempo_real_implant_geral - proj.tempo_estimado_implant_geral) + (proj.tempo_real_desenv_geral - proj.tempo_estimado_desenv_geral)
                     ) <= 16
                 THEN 'Dentro do esperado'
+
                 WHEN
                     ABS(
                         (proj.tempo_real_implant_geral - proj.tempo_estimado_implant_geral) + (proj.tempo_real_desenv_geral - proj.tempo_estimado_desenv_geral)
@@ -64,9 +72,11 @@ WITH Projetos AS
             ON proj.colaborador = colab.colaborador
         LEFT JOIN dbo.d_porte_projeto AS porte
             ON proj.porte_projeto = porte.porte_projeto
+		LEFT JOIN dbo.d_clientes AS cli
+			ON proj.cliente = cli.cliente
     WHERE 1 = 1
         [[AND proj.data_abertura_proposta >= {{data_inicio}}]]
-        [[AND proj.data_abertura_proposta <= {{data_fim}}]]
+        [[AND proj.data_abertura_proposta <= {{data_final}}]]
         [[AND {{setor}}]]
         [[AND {{porte_projeto}}]]
         [[AND {{colaborador}}]]
@@ -77,7 +87,14 @@ Score AS
 (
     SELECT
         task_gid,
-        [Proposta],
+		[Cliente],
+		[Proposta],
+		[Desenv. - Planejado],
+		[Desenv. - Executado],
+		[Implant. - Planejado],
+		[Implant. - Executado],
+		[Horas de Retrabalho],
+		[Horas de Itens Fora do Escopo],
         -- desvio
         desvio,
         CASE
@@ -116,12 +133,15 @@ Score AS
 SELECT
 	TOP 10
     task_gid,
+	[Cliente],
     [Proposta],
-	desvio_result AS [Desvio],
-	eficiencia_result AS [Eficiência],
-	retrabalho_result AS [Retrabalho],
-	fora_escopo_result AS [Fora Escopo],
+	[Desenv. - Planejado],
+	[Desenv. - Executado],
+	[Implant. - Planejado],
+	[Implant. - Executado],
+	[Horas de Retrabalho],
+	[Horas de Itens Fora do Escopo],
     (desvio_result + eficiencia_result + retrabalho_result + fora_escopo_result) AS [Score Total]
 FROM Score
 ORDER BY
-    [Score Total], [Proposta] ASC;
+    [Score Total] ASC, [Cliente],[Proposta] ASC;

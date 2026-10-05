@@ -1,11 +1,17 @@
 SELECT
-	COUNT(DISTINCT proj.task_gid) AS [Total de Projetos]
+	COUNT(DISTINCT proj.task_gid) AS [Total de Projetos],
+	CASE
+		WHEN proj.status_prazo = 'Em dia' THEN 'Em Dia'
+		WHEN proj.status_prazo = 'Atrasado' THEN 'Atrasado'
+		WHEN proj.status_prazo IS NULL THEN 'Em Branco'
+	END AS [Status do Prazo]
 FROM dbo.vw_projetos_tratada AS proj
 	LEFT JOIN dbo.d_clientes AS cli
 		ON proj.cliente = cli.cliente
 	LEFT JOIN dbo.d_porte_projeto AS porte
 		ON proj.porte_projeto = porte.porte_projeto
-WHERE proj.status_projeto IN (
+WHERE
+	proj.status_projeto IN (
 		'Não Iniciado',
 		'Em Desenvolvimento',
 		'Desenvolvimento Pausado',
@@ -46,4 +52,5 @@ WHERE proj.status_projeto IN (
 			AND {{colaborador}}
 	)
 	]]
-	[[AND {{cliente}}]];
+GROUP BY
+	proj.status_prazo;

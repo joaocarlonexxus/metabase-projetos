@@ -5,8 +5,8 @@ SELECT
 		WHEN proj.processo = 'Fertilizantes' THEN 'Fertilizantes'
 		WHEN proj.processo = 'Indústria Química' THEN 'Ind. Química'
 		WHEN proj.processo = 'Nutrição Animal' THEN 'Nutr. Animal'
-		WHEN proj.processo = 'Outros' THEN 'Outros'
 		WHEN proj.processo = 'Terminal Portuário / Recebimento' THEN 'Term. Port. / Rec.'
+		WHEN proj.processo = 'Outros' THEN 'Outros'
 		ELSE proj.processo
 	END AS [Processo]
 FROM dbo.vw_projetos_tratada AS proj
