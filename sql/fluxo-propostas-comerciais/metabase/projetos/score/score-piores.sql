@@ -4,6 +4,7 @@ WITH Projetos AS
         proj.task_gid,
 		MAX(cli.cliente_simples) AS [Cliente],
         MAX(proj.task_name) AS [Proposta],
+		MAX(proj.status_projeto) AS [Status Projeto],
 		MAX(proj.tempo_estimado_desenv_geral) AS [Desenv. - Planejado],
 		MAX(proj.tempo_real_desenv_geral) AS [Desenv. - Executado],
 		MAX(proj.tempo_estimado_implant_geral) AS [Implant. - Planejado],
@@ -75,8 +76,8 @@ WITH Projetos AS
 		LEFT JOIN dbo.d_clientes AS cli
 			ON proj.cliente = cli.cliente
     WHERE 1 = 1
-        [[AND proj.data_abertura_proposta >= {{data_inicio}}]]
-        [[AND proj.data_abertura_proposta <= {{data_final}}]]
+        [[AND proj.data_termino >= {{data_inicio}}]]
+        [[AND proj.data_termino <= {{data_final}}]]
         [[AND {{setor}}]]
         [[AND {{porte_projeto}}]]
         [[AND {{colaborador}}]]
@@ -129,6 +130,7 @@ Score AS
             ELSE 0.3333
         END * 15.36 AS fora_escopo_result
     FROM Projetos
+	WHERE [Status Projeto] = 'Finalizado'
 )
 SELECT
 	TOP 10
@@ -144,4 +146,4 @@ SELECT
     (desvio_result + eficiencia_result + retrabalho_result + fora_escopo_result) AS [Score Total]
 FROM Score
 ORDER BY
-    [Score Total] ASC, [Cliente],[Proposta] ASC;
+    [Score Total] ASC, [Cliente] ASC, [Proposta] ASC;
