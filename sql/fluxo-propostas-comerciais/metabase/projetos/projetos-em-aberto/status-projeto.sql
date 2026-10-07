@@ -31,8 +31,6 @@ WHERE
 		'14. Finalizado',
 		'15. Excedente de Horas de Suporte'
 	)
-	[[AND proj.data_abertura_proposta >= {{data_inicial}}]]
-	[[AND proj.data_abertura_proposta <= {{data_final}}]]
 	[[
 	AND EXISTS
 	(
