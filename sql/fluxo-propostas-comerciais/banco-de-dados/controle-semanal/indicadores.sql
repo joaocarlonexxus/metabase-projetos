@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[indicadores]    Data do Script: 24/09/2026 14:13:28 ******/
+/****** Objeto:  Table [dbo].[indicadores]    Data do Script: 07/10/2026 16:23:17 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -35,7 +35,6 @@ CREATE TABLE [dbo].[indicadores](
 	[proj_cancelados] [int] NOT NULL,
 	[proj_cancelados_pct]  AS (CONVERT([float],[proj_cancelados])/nullif([total_proj],(0))),
 	[total_proj] [float] NOT NULL,
-	[tx_conclusao] [float] NOT NULL,
 	[tx_retrabalho] [float] NULL,
 	[tx_itens_fora_escopo] [float] NULL,
 	[eficiencia_media_desenv] [float] NULL,
@@ -70,6 +69,9 @@ CREATE TABLE [dbo].[indicadores](
 	[tx_horas_sem_estimativa_implant] [float] NULL,
 	[desvio_esforco_desenv] [float] NULL,
 	[desvio_esforco_implant] [float] NULL,
+	[media_dias_reuniao_abertura] [decimal](10, 2) NULL,
+	[media_dias_reuniao_kickoff] [decimal](10, 2) NULL,
+	[media_dias_reuniao_termino] [decimal](10, 2) NULL,
  CONSTRAINT [PK__indicador__3213E83F208F9FA3] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
