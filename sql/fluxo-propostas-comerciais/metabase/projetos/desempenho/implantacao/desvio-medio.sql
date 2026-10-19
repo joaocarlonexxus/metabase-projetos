@@ -76,3 +76,5 @@ SELECT
         0
     ) AS [Desvio Médio - Implant.]
 FROM Projetos;
+
+-- Métrica não está sendo utilizada atualmente no Metabase, mas é uma métrica que pode ser útil futuramente, então foi mantida no repositório.
