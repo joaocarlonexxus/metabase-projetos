@@ -10,7 +10,6 @@ SELECT
 	proj.status_projeto AS [Status Projeto],
 	proj.status_prazo AS [Status Prazo],
 	proj.data_abertura_proposta AS [Data Abertura],
-	proj.data_estimada_finalizacao AS [Data Est. Finalização],
 	proj.data_reuniao_abertura AS [Data Reunião Abertura],
 	proj.data_reuniao_kickoff AS [Data Reunião Kickoff],
 	proj.data_inicio AS [Data Início - Desenv],
