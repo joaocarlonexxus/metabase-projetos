@@ -1,12 +1,15 @@
 USE [controle_projetos_new]
 GO
-/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_f_projetos_tratada]    Data do Script: 01/10/2026 11:08:47 ******/
+
+/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_f_projetos_tratada]    Data do Script: 19/10/2026 08:31:04 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[sp_atualizar_f_projetos_tratada]
+
+CREATE PROCEDURE [dbo].[sp_atualizar_f_projetos_tratada]
     @execucao_n8n_id NVARCHAR(100) = NULL
 AS
 BEGIN
@@ -499,3 +502,4 @@ BEGIN
 
     END CATCH;
 END;
+GO

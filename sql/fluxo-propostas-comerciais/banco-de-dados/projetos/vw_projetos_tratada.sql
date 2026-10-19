@@ -1,17 +1,12 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  View [dbo].[vw_projetos_tratada]    Data do Script: 01/10/2026 11:12:28 ******/
+/****** Objeto:  View [dbo].[vw_projetos_tratada]    Data do Script: 19/10/2026 08:29:28 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-
-
-
-
 
 CREATE VIEW [dbo].[vw_projetos_tratada]
 AS

@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[d_tipos_proposta]    Data do Script: 24/09/2026 14:18:03 ******/
+/****** Objeto:  Table [dbo].[d_tipos_proposta]    Data do Script: 19/10/2026 08:27:51 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -38,5 +38,3 @@ GO
 
 ALTER TABLE [dbo].[d_tipos_proposta] ADD  CONSTRAINT [DF_d_tipos_proposta_data_atualizacao]  DEFAULT (sysutcdatetime()) FOR [data_atualizacao]
 GO
-
-

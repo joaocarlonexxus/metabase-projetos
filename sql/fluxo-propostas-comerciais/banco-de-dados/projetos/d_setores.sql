@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[d_setores]    Data do Script: 24/09/2026 14:16:57 ******/
+/****** Objeto:  Table [dbo].[d_setores]    Data do Script: 19/10/2026 08:27:21 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -27,5 +27,3 @@ GO
 
 ALTER TABLE [dbo].[d_setores] ADD  DEFAULT (getdate()) FOR [data_atualizacao]
 GO
-
-

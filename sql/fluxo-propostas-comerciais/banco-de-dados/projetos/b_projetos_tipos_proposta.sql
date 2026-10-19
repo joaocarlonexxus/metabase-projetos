@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[b_projetos_tipos_proposta]    Data do Script: 24/09/2026 14:25:01 ******/
+/****** Objeto:  Table [dbo].[b_projetos_tipos_proposta]    Data do Script: 19/10/2026 08:25:13 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -36,5 +36,3 @@ GO
 
 ALTER TABLE [dbo].[b_projetos_tipos_proposta] CHECK CONSTRAINT [FK_b_projetos_tipos_proposta_tipo_proposta]
 GO
-
-

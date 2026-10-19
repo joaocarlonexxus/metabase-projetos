@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[d_calendario]    Data do Script: 24/09/2026 14:25:40 ******/
+/****** Objeto:  Table [dbo].[d_calendario]    Data do Script: 19/10/2026 08:25:33 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -45,5 +45,3 @@ GO
 
 ALTER TABLE [dbo].[d_calendario] ADD  CONSTRAINT [DF_d_calendario_data_criacao]  DEFAULT (sysutcdatetime()) FOR [data_criacao]
 GO
-
-

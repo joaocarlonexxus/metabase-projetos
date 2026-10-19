@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_b_projetos_setores]    Data do Script: 24/09/2026 14:38:57 ******/
+/****** Objeto:  StoredProcedure [dbo].[sp_atualizar_b_projetos_setores]    Data do Script: 19/10/2026 08:31:39 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -60,5 +60,3 @@ BEGIN
     END CATCH;
 END;
 GO
-
-

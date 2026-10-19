@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[f_projetos_raw]    Data do Script: 01/10/2026 11:11:33 ******/
+/****** Objeto:  Table [dbo].[f_projetos_raw]    Data do Script: 19/10/2026 08:28:27 ******/
 SET ANSI_NULLS ON
 GO
 

@@ -1,7 +1,7 @@
 USE [controle_projetos_new]
 GO
 
-/****** Objeto:  Table [dbo].[n8n_controle_sincronizacao]    Data do Script: 24/09/2026 14:27:33 ******/
+/****** Objeto:  Table [dbo].[n8n_controle_sincronizacao]    Data do Script: 19/10/2026 08:29:05 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -21,5 +21,3 @@ GO
 
 ALTER TABLE [dbo].[n8n_controle_sincronizacao] ADD  DEFAULT (sysdatetime()) FOR [data_atualizacao]
 GO
-
-
