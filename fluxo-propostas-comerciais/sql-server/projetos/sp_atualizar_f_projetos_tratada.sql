@@ -84,7 +84,6 @@ BEGIN
                 r.tipo_item,
                 r.status_prazo,
                 r.origem_impacto,
-                r.ticket,
 
                 r.data_termino,
                 r.data_estimada_finalizacao,
@@ -246,7 +245,6 @@ BEGIN
                 destino.tipo_item = fonte.tipo_item,
                 destino.status_prazo = fonte.status_prazo,
                 destino.origem_impacto = fonte.origem_impacto,
-                destino.ticket = fonte.ticket,
 
                 destino.data_termino = fonte.data_termino,
                 destino.data_estimada_finalizacao = fonte.data_estimada_finalizacao,
@@ -336,7 +334,6 @@ BEGIN
                 tipo_item,
                 status_prazo,
                 origem_impacto,
-                ticket,
 
                 data_termino,
                 data_estimada_finalizacao,
@@ -424,7 +421,6 @@ BEGIN
                 fonte.tipo_item,
                 fonte.status_prazo,
                 fonte.origem_impacto,
-                fonte.ticket,
 
                 fonte.data_termino,
                 fonte.data_estimada_finalizacao,

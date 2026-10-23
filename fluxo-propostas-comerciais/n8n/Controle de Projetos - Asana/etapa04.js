@@ -404,14 +404,6 @@ function mapearTarefa(tarefa) {
       )
     ),
 
-    ticket: converterTexto(
-      buscarCampo(
-        campos,
-        '1213275341125057',
-        'Ticket'
-      )
-    ),
-
     data_termino: converterData(
       buscarCampo(
         campos,

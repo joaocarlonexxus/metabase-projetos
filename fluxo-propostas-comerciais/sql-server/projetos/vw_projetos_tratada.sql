@@ -44,7 +44,6 @@ SELECT
     p.tipo_item,
     p.status_prazo,
     p.origem_impacto,
-    p.ticket,
     p.data_termino,
     p.data_estimada_finalizacao,
     p.data_abertura_proposta,
