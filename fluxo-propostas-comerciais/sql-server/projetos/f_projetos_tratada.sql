@@ -42,7 +42,6 @@ CREATE TABLE [dbo].[f_projetos_tratada](
 	[tipo_item] [nvarchar](255) NULL,
 	[status_prazo] [nvarchar](255) NULL,
 	[origem_impacto] [nvarchar](255) NULL,
-	[tipo_startup] [nvarchar](255) NULL,
 	[ticket] [nvarchar](255) NULL,
 	[data_termino] [date] NULL,
 	[data_estimada_finalizacao] [date] NULL,

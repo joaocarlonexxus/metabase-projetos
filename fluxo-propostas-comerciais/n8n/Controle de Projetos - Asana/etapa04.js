@@ -404,14 +404,6 @@ function mapearTarefa(tarefa) {
       )
     ),
 
-    tipo_startup: converterTexto(
-      buscarCampo(
-        campos,
-        '1212923894182187',
-        'Tipo Startup'
-      )
-    ),
-
     ticket: converterTexto(
       buscarCampo(
         campos,
